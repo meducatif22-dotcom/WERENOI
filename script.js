@@ -135,4 +135,5 @@ document.getElementById("form-supra").addEventListener("submit", function (e) {
 
   // 🔹 Envoi vers Supabase
   envoyerInscriptionSupra(inscription);
+      alert("votre message a ete envoyer dans la boite de Mr samuel !");
 });

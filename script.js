@@ -60,6 +60,9 @@ document.getElementById("form-client").addEventListener("submit", function(e) {
 
   // Reset du formulaire
   e.target.reset();
+  
+      // ✅ Redirection après succès
+      window.location.href = "merci.html";
 });
 
 // Affichage initial

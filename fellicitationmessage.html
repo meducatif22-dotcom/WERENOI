@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Félicitations !</title>
+<!-- Google Fonts pour un style plus festif -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* Reset rapide */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body, html {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to top, #ffecd2, #fcb69f);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+    text-align: center;
+    padding: 20px;
+  }
+
+  h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 2.5rem;
+    color: #ff4c4c;
+    animation: pop 1s ease forwards;
+  }
+
+  p {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #333;
+  }
+
+  .btn-home {
+    margin-top: 40px;
+    padding: 15px 30px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 50px;
+    background: #ff4c4c;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .btn-home:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  }
+
+  /* Pop animation */
+  @keyframes pop {
+    0% { transform: scale(0.5); opacity: 0; }
+    60% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); }
+  }
+
+  /* Confettis */
+  .confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ff4c4c;
+    top: 0;
+    animation: fall 3s linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
+  }
+
+  /* Responsive text */
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 2rem;
+    }
+    p {
+      font-size: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<h1>Félicitations ! 🎉</h1>
+<p>Tu es maintenant un fan officiel ! Merci pour ton soutien. Profite de l'aventure et reste connecté pour des surprises exclusives !</p>
+
+<button class="btn-home" onclick="window.location.href='index.html'">Retour à l'accueil</button>
+
+<script>
+  // Générer des confettis aléatoires
+  const colors = ['#ff4c4c','#ffeb3b','#4caf50','#2196f3','#ff9800','#9c27b0'];
+  for(let i=0; i<50; i++){
+    const confetti = document.createElement('div');
+    confetti.classList.add('confetti');
+    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    confetti.style.left = Math.random() * window.innerWidth + 'px';
+    confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+    confetti.style.width = confetti.style.height = (Math.random() * 8 + 5) + 'px';
+    document.body.appendChild(confetti);
+  }
+</script>
+
+</body>
+</html>

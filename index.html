@@ -28,6 +28,65 @@
   <link href="assets/css/main.css" rel="stylesheet">
 
 
+
+  <style>
+
+
+
+/* Overlay loader */
+.loader {
+  position: fixed;
+  inset: 0; /* remplace top/left/width/height */
+  background: rgba(0, 0, 0, 0.6);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px; /* IMPORTANT pour mobile */
+  text-align: center;
+
+  color: white;
+  font-size: clamp(14px, 4vw, 18px); /* responsive */
+  z-index: 9999;
+}
+
+/* Caché par défaut */
+.hidden {
+  display: none !important;
+}
+
+/* Spinner responsive */
+.spinner {
+  width: clamp(250px, 20vw, 100px);
+  height: clamp(250px, 20vw, 100px);
+
+  border: clamp(30px, 10vw, 20px) solid #ddd;
+  border-top: clamp(30px, 10vw, 20px) solid #08f100;
+
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+
+  margin-bottom: 26px;
+}
+
+/* Texte */
+.loader p {
+  margin: 0;
+  padding: 0 10px;
+  line-height: 1.4;
+}
+
+/* Animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+  </style>
+
 </head>
 
 <body class="index-page">
@@ -38,12 +97,12 @@
     <div class="header-container d-flex flex-column align-items-start">
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i>Home</a></li>
-          <li><a href="#about"><i class="bi bi-person navicon"></i> About</a></li>
-          <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
-          <li><a href="#portfolio"><i class="bi bi-images navicon"></i> Portfolio</a></li>
-          <li><a href="#services"><i class="bi bi-hdd-stack navicon"></i> Services</a></li>
-          <li class="dropdown"><a href="#"><i class="bi bi-menu-button navicon"></i> <span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+          <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i>Accueil</a></li>
+          <li><a href="#about"><i class="bi bi-person navicon"></i> Comprendre l’acteur </a></li>
+          <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i> Pourquoi adhérer</a></li>
+          <li><a href="#portfolio"><i class="bi bi-images navicon"></i> Galerie officielle</a></li>
+          <li><a href="#services"><i class="bi bi-hdd-stack navicon"></i> Adhérer maintenant</a></li>
+          <li class="dropdown"><a href="#"><i class="bi bi-menu-button navicon"></i> <span>Fans CLUB</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li><a href="#">Dropdown 1</a></li>
               <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
@@ -100,7 +159,22 @@
 La plateforme est protégée par des systèmes de vérification avancés garantissant l’authenticité des profils, aussi bien pour les fans que pour les célébrités.</p>
 
                 <div class="hero-actions">
-                  <a href="#portfolio" class="btn btn-primary">Devenir fan officiel</a>
+                  <button id="gopage" class="btn btn-primary">Devenir fan officiel</button>
+
+<script>
+document.getElementById("gopage").addEventListener("click", function() {
+    window.location.href = "f.html"; // redirige vers f.html
+});
+</script>
+                    <!-- Loader -->
+ <div id="loader" class="loader hidden">
+  <div class="spinner">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <p>Chargement...</p>
+</div>
                   <a href="#contact" class="btn btn-outline">Envoyer un message</a>
                 </div>
 
@@ -793,7 +867,7 @@ Offres et surprises réservées au fan club<br>
             <div class="col-lg-8 col-md-12">
               <div class="service-intro">
                 <h2 class="service-heading">
-                  <div>Innovative business</div>
+                  <div>Adhérer Maintenant</div>
                   <div><span>performance solutions</span></div>
                 </h2>
               </div>
@@ -801,7 +875,7 @@ Offres et surprises réservées au fan club<br>
             <div class="col-lg-4 col-md-12">
               <div class="service-summary">
                 <p>
-                  We integrate forward-thinking strategies, creative approaches, and state-of-the-art technologies to deliver exceptional customer experiences that drive growth and engage target markets.
+                ces that drive growth and engage target markets.
                 </p>
                 <a href="#contact" class="service-btn">
                   PLUS D'INFORMATION
@@ -1134,21 +1208,14 @@ Le Fan Club privilégie la qualité, l’authenticité et le respect dans chaque
                   <i class="bi bi-geo-alt"></i>
                 </div>
                 <div class="content">
-                  <h4>Our Location</h4>
-                  <p>A108 Adam Street</p>
-                  <p>New York, NY 535022</p>
+                  <h4>Adress officielle</h4>
+                  <p>21 Parc Saint Exupéry, </p>
+                  <p>06000 Nice, France</p>
                 </div>
               </div>
 
               <div class="info-item">
-                <div class="icon-box">
-                  <i class="bi bi-telephone"></i>
-                </div>
-                <div class="content">
-                  <h4>Phone Number</h4>
-                  <p>+1 5589 55488 55</p>
-                  <p>+1 6678 254445 41</p>
-                </div>
+                
               </div>
 
               <div class="info-item">
@@ -1157,8 +1224,9 @@ Le Fan Club privilégie la qualité, l’authenticité et le respect dans chaque
                 </div>
                 <div class="content">
                   <h4>Email Address</h4>
-                  <p>info@example.com</p>
-                  <p>contact@example.com</p>
+                  <p>fanssamuellebihan
+officiel@gmail.com</p>
+                
                 </div>
               </div>
             </div>
@@ -1166,10 +1234,14 @@ Le Fan Club privilégie la qualité, l’authenticité et le respect dans chaque
 
           <div class="col-lg-7">
             <div class="contact-form">
-              <h3>Get In Touch</h3>
-              <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum primis.</p>
+              <h3>formulaire de contact</h3>
+              <p>Merci de remplir le formulaire de contact avec la plus grande attention.
+Chaque information demandée est importante afin de nous permettre de traiter votre message dans les meilleures conditions.
+Un formulaire correctement complété garantit une lecture attentive et une réponse adaptée.
+Nous vous invitons donc à vérifier vos coordonnées et votre message avant l’envoi.
+Merci pour votre sérieux et votre engagement en tant que fan..</p>
 
-              <form action="forms/contact.php" method="post" class="php-email-form">
+              <form id="form-client">
                 <div class="row gy-4">
 
                   <div class="col-md-6">
@@ -1182,7 +1254,24 @@ Le Fan Club privilégie la qualité, l’authenticité et le respect dans chaque
 
                   <div class="col-12">
                     <input type="text" class="form-control" id="adresse" placeholder="Numéro de telephone" required="">
+            
                   </div>
+<div class="d-flex align-items-center gap-3">
+  <div class="custom-control custom-radio">
+    <input type="radio" class="custom-control-input" id="customControlValidation2" name="radio-stacked" required>
+    <label class="custom-control-label" for="customControlValidation2">
+      Toggle this custom radio
+    </label>
+  </div>
+
+  <div class="custom-control custom-radio">
+    <input type="radio" class="custom-control-input" id="customControlValidation3" name="radio-stacked" required>
+    <label class="custom-control-label" for="customControlValidation3">
+      Or toggle this other custom radio
+    </label>
+  </div>
+</div>
+
 
                   <div class="col-12">
                     <textarea class="form-control" id="message" rows="6" placeholder="Message" required=""></textarea>
@@ -1193,10 +1282,12 @@ Le Fan Club privilégie la qualité, l’authenticité et le respect dans chaque
                     <div class="error-message"></div>
                     <div class="sent-message">Your message has been sent. Thank you!</div>
 
-                     <button type="submit">Envoyer</button>
+                     <button  type="submit"  style="background-color: blue;" class="btn btn-primary btn-lg">Envoyer</button>
                   </div>
 
                 </div>
+
+                
               </form>
 
             </div>

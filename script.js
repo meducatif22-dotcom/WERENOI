@@ -90,6 +90,12 @@ async function envoyerInscriptionSupra(inscription) {
   }
 }
 
+
+
+
+
+
+
 // ===============================
 // GESTION DU FORMULAIRE
 // ===============================

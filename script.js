@@ -93,47 +93,66 @@ async function envoyerInscriptionSupra(inscription) {
 
 
 
-
-
-
 // ===============================
-// GESTION DU FORMULAIRE
+// FORMULAIRE SUPRA → SUPABASE
 // ===============================
 
-document.getElementById("form-supra").addEventListener("submit", function (e) {
-  e.preventDefault();
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("form-supra");
+  if (!form) return;
 
-  // 🔹 Zone (France / Hors France)
-  const zone = document.querySelector('input[name="zone"]:checked')?.value;
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault(); // bloque le submit natif
+    console.log("Formulaire soumis"); // DEBUG
 
-  // 🔹 Mode de validation (gmail / whatsapp)
-  const validation = document.querySelector('input[name="validation"]:checked')?.value;
+    // 🔹 Zone (France / Hors France)
+    const zone = document.querySelector('input[name="zone"]:checked')?.value;
 
-  if (!zone || !validation) {
-    alert("Veuillez choisir une zone et un mode de validation.");
-    return;
-  }
+    // 🔹 Mode de validation (gmail / whatsapp)
+    const validation = document.querySelector('input[name="validation"]:checked')?.value;
 
-  // 🔹 Calcul du montant
-  const montant = zone === "France" ? 99 : 125;
+    if (!zone || !validation) {
+      alert("Veuillez choisir une zone et un mode de validation.");
+      return;
+    }
 
-  // 🔹 Objet envoyé à Supabase
-  const inscription = {
-    nom: document.getElementById("nom").value,
-    prenom: document.getElementById("prenom").value,
-    adresse: document.getElementById("adresse").value,
-    code_postal: document.getElementById("code_postal").value,
-    ville: document.getElementById("ville").value,
-    pays: document.getElementById("pays").value,
-    date_naissance: document.getElementById("date_naissance").value,
-    email: document.getElementById("email").value,
-    telephone: document.getElementById("telephone").value,
-    zone: zone,
-    validation: validation,
-    montant: montant
-  };
+    // 🔹 Calcul du montant
+    const montant = zone === "France" ? 99 : 125;
 
-  // 🔹 Envoi vers Supabase
-  envoyerInscriptionSupra(inscription);
-      alert("votre message a ete envoyer dans la boite de Mr samuel !");
+    // 🔹 Objet envoyé à Supabase
+    const inscription = {
+      nom: document.getElementById("nom").value.trim(),
+      prenom: document.getElementById("prenom").value.trim(),
+      adresse: document.getElementById("adresse").value.trim(),
+      code_postal: document.getElementById("code_postal").value.trim(),
+      ville: document.getElementById("ville").value.trim(),
+      pays: document.getElementById("pays").value.trim(),
+      date_naissance: document.getElementById("date_naissance").value,
+      email: document.getElementById("email").value.trim(),
+      telephone: document.getElementById("telephone").value.trim(),
+      zone: zone,
+      validation: validation,
+      montant: montant
+    };
+
+    console.log("Données à envoyer :", inscription); // DEBUG
+
+    try {
+      const { error } = await supabase
+        .from("Supra")
+        .insert([inscription]);
+
+      if (error) {
+        console.error("Erreur Supabase :", error);
+        alert("Erreur lors de l'inscription : " + error.message);
+      } else {
+        // ✅ Redirection après succès
+        window.location.href = "/felicitations.html";
+      }
+    } catch (err) {
+      console.error("Erreur JS :", err);
+      alert("Une erreur inattendue est survenue.");
+    }
+  });
 });
+
